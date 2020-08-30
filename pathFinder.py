@@ -4,6 +4,7 @@ import tkinter
 from tkinter import messagebox
 from queue import PriorityQueue
 from timeit import default_timer as timer
+from tkinter.simpledialog import askinteger
 
 ROWS = 40
 WIDTH_PER_SQUARE = 18
@@ -39,9 +40,17 @@ class Square :
         self.isObstacle = False
         self.isChecked = False
         self.neighbours = list()
+        self.scoreInfo = None
         
     def draw ( self, window ) :
         pygame.draw.rect(window, self.color, (self.x, self.y, self.width, self.width))
+        if self.info and self.color == COLORS['green'] :
+            text = str(self.scoreInfo)
+            custom_font = pygame.font.SysFont('arialblack', 12)
+            text_surface = custom_font.render(text, True, COLORS['red'])
+            text_rect = text_surface.get_rect()
+            text_rect.center = (self.x+WIDTH_PER_SQUARE/2, self.y+WIDTH_PER_SQUARE/2)
+            root.blit(text_surface, text_rect)
         
     def getPos ( self ) :
         return (self.row, self.col)
@@ -152,7 +161,7 @@ def h_score (node1, node2) :
     
     
 
-def runAlgorithm(window, grid, start, end, showVis) :
+def runAlgorithm(window, grid, start, end, showVis, scoreDisplay) :
     startTime = timer()
     gScores = dict()
     
@@ -204,6 +213,10 @@ def runAlgorithm(window, grid, start, end, showVis) :
                         openSet.put((f, counter, ng))
                         openSetTracker.add(ng)
                         if showVis : ng.color = COLORS['green']
+                        if scoreDisplay :
+                            if scoreDisplay == 1 : ng.info = f
+                            elif scoreDisplay == 2 : ng.info = g
+                            elif scoreDisplay == 3 : ng.info = h
                 start.color = COLORS['orange']   
             if showVis : draw_screen(window, grid)
     
@@ -215,9 +228,17 @@ def showPopup() :
     popup = tkinter.Tk()
     popup.withdraw()
     showVis = messagebox.askyesno('', 'Do you want the program to show the visualization alongwith the path ?')
+
+    if showVis :
+        answer = messagebox.askyesno(' ', 'Do you want to see the scores of the checked boxes ?\nCAUTION : THIS WILL REDUCE THE SPEED OF THE ALGORITHM')
+        if answer :
+            scoreDisplay = askinteger(' ', 'Which one out of the following scores would you like to show in the checked boxes?\n\n\t(1) F-Score\t\t(2) G-Score\t\t(3) H-Score')
+        else : scoreDisplay = None
+    else : scoreDisplay = None
+
     popup.destroy()
     popup.mainloop()
-    return showVis
+    return showVis, scoreDisplay
     
     
 def main(window) :
@@ -256,9 +277,9 @@ def main(window) :
             if event.type == pygame.KEYUP :
                 if event.key == pygame.K_SPACE and startNode and endNode and not algoRunning :
                     algoRunning = True
-                    showVis = showPopup()
+                    showVis, scoreDisplay = showPopup()
                     print ('\nRUNNING THE A* ALGORITHM ...')
-                    success, time = runAlgorithm(window, grid, startNode, endNode, showVis)
+                    success, time = runAlgorithm(window, grid, startNode, endNode, showVis, scoreDisplay)
                     if time == -1 :
                         print('ALGORITHM WAS STOPPED ARBITRARILY !')
                         run = False
