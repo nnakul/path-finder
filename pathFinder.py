@@ -254,7 +254,7 @@ def main(window) :
                     if result == 1 : endNode = None
                     
             if event.type == pygame.KEYUP :
-                if event.key == pygame.K_SPACE and startNode and endNode :
+                if event.key == pygame.K_SPACE and startNode and endNode and not algoRunning :
                     algoRunning = True
                     showVis = showPopup()
                     print ('\nRUNNING THE A* ALGORITHM ...')
