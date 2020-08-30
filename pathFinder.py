@@ -214,9 +214,9 @@ def runAlgorithm(window, grid, start, end, showVis, scoreDisplay) :
                         openSetTracker.add(ng)
                         if showVis : ng.color = COLORS['green']
                         if scoreDisplay :
-                            if scoreDisplay == 1 : ng.info = f
-                            elif scoreDisplay == 2 : ng.info = g
-                            elif scoreDisplay == 3 : ng.info = h
+                            if scoreDisplay == 1 : ng.scoreInfo = f
+                            elif scoreDisplay == 2 : ng.scoreInfo = g
+                            elif scoreDisplay == 3 : ng.scoreInfo = h
                 start.color = COLORS['orange']   
             if showVis : draw_screen(window, grid)
     
