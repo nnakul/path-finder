@@ -44,7 +44,7 @@ class Square :
         
     def draw ( self, window ) :
         pygame.draw.rect(window, self.color, (self.x, self.y, self.width, self.width))
-        if self.info and self.color == COLORS['green'] :
+        if self.scoreInfo and self.color == COLORS['green'] :
             text = str(self.scoreInfo)
             custom_font = pygame.font.SysFont('arialblack', 12)
             text_surface = custom_font.render(text, True, COLORS['red'])
