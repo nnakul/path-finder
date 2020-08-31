@@ -179,6 +179,7 @@ def runAlgorithm(window, grid, start, end, showVis, scoreDisplay) :
     
     while len(openSetTracker) :
         currentNode = openSet.get()[2]
+        if showVis : currentNode.color = COLORS['red']
         openSetTracker.remove(currentNode)
         
         for event in pygame.event.get() :
@@ -212,7 +213,7 @@ def runAlgorithm(window, grid, start, end, showVis, scoreDisplay) :
                     if not ng in openSetTracker :
                         openSet.put((f, counter, ng))
                         openSetTracker.add(ng)
-                        if showVis : ng.color = COLORS['green']
+                        if showVis : ng.color = COLORS['red']
                         if scoreDisplay :
                             if scoreDisplay == 1 : ng.scoreInfo = f
                             elif scoreDisplay == 2 : ng.scoreInfo = g
@@ -230,7 +231,7 @@ def showPopup() :
     showVis = messagebox.askyesno('', 'Do you want the program to show the visualization alongwith the path ?')
 
     if showVis :
-        answer = messagebox.askyesno(' ', 'Do you want to see the scores of the checked boxes ?\nCAUTION : THIS WILL REDUCE THE SPEED OF THE ALGORITHM')
+        answer = messagebox.askyesno(' ', 'Do you want to see the scores of the checked boxes ?\nCAUTION : THIS WILL SLOW DOWN THE ALGORITHM')
         if answer :
             scoreDisplay = askinteger(' ', 'Which one out of the following scores would you like to show in the checked boxes?\n\n\t(1) F-Score\t\t(2) G-Score\t\t(3) H-Score')
         else : scoreDisplay = None
