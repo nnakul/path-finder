@@ -179,7 +179,7 @@ def runAlgorithm(window, grid, start, end, showVis, scoreDisplay) :
     
     while len(openSetTracker) :
         currentNode = openSet.get()[2]
-        if showVis : currentNode.color = COLORS['red']
+        if showVis : currentNode.color = COLORS['green']
         openSetTracker.remove(currentNode)
         
         for event in pygame.event.get() :
