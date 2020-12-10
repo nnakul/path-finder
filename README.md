@@ -3,12 +3,12 @@ A* is an *informed search algorithm* that is formulated in terms of weighted gra
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="README_IMAGES/img_1.png" width="250" height="250">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="README_IMAGES/img_2.png" width="250" height="250">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="README_IMAGES/img_3.png" width="250" height="250">
 
-# COMMANDS AND CONTROLS
-- Create source - mouse-button-down
-- Create destination - mouse-button-down
-- Draw labrynth - right-click and mouse-button-down
-- Erase source - mouse-button-down
-- Erase destination - mouse-button-down
-- Erase labrynth - mouse-button-down
-- Start visualisation - spacebar
-- Restart process - backspace
+## COMMANDS AND CONTROLS
+- CREATE SOURCE - *mouse-button-down*
+- CREATE DESTINATION - *mouse-button-down*
+- DRAW LABYRINTH - *right-click + mouse-button-down*
+- ERASE SOURCE - *mouse-button-down*
+- ERASE DESTINATION - *mouse-button-down*
+- ERASE LABYRINTH - *mouse-button-down*
+- START VISUALISATION - *spacebar*
+- RESTART PROCESS - *backspace*
